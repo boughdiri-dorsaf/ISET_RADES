@@ -79,4 +79,24 @@ static updateuser(content, cb){
   }
 //Update User
 }
+/*
+
+{
+    "email":"",
+    "password":"",
+    "nom":"Ahmed",
+    "prenom":"Bejaoui",
+    "age":0,
+    "cin":"",
+    "sexe":"",
+    "num_passport":"",
+    "id_user":1111111119,
+    "date_naissance":"2020-04-06",
+    "code_postale":"",
+"rue":"",
+"ville":"",
+"gouvernorat_adresse":"",
+"pays":""
+}
+*/
 module.exports = etudiant
