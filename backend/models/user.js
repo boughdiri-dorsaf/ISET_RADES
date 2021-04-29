@@ -29,7 +29,7 @@ static adduser(content, cb){
      content.code_postale,
      content.rue,
      content.ville,
-     content.gouvernorat_adresse,
+     content.gouvernourat,
      content.pays,
      id_user
     ], (err, res) => {
@@ -62,13 +62,14 @@ static updateuser(content, cb){
     })
   }
   static updateadresse(content, cb){
+    console.log(content)
     connexion.query('UPDATE `adresse` SET `code_postale`=?,`rue`=?,`ville`=?,`gouvernorat_adresse`=?,`pays`=? WHERE `id_user`=?'
    ,
     [
      content.code_postale,
      content.rue,
      content.ville,
-     content.gouvernorat_adresse,
+     content.gouvernourat,
      content.pays,
      content.id_user
     ], (err, res) => {
@@ -95,7 +96,7 @@ static updateuser(content, cb){
 "code_postale":"",
 "rue":"",
 "ville":"",
-"gouvernorat_adresse":"",
+"gouvernourat":"",
 "pays":""
 }
 */
