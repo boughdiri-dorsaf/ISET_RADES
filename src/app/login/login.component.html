@@ -1,58 +1,91 @@
-<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
-    <div class="card card0 border-0">
-        <div class="row d-flex">
-            <div class="col-lg-6">
-                <div class="card1 pb-5">
-                    <div class="row"> <img src="assets/images/iset.png" class="logo"> </div>
-                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="https://i.imgur.com/uNGdWHi.png" class="image"> </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card2 card border-0 px-4 py-5">
-                    <div class=" mb-4 px-3 center">
-                       
-                            <small class="font-weight-bold text-center">Pas de Compte?  <a class="text-danger " [routerLink]="['/inscrire']">S'incrire</a>
-                            </small> 
-                       
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+</head>
+
+<body class="fix-menu">
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="login-card card-block auth-body mr-auto ml-auto">
+                        <form class="md-float-material">
+                            <div class="text-center">
+                                <img src="assets/images/iset.png" alt="logo.png">
+                            </div>
+                            <div class="auth-box">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-left txt-primary">Authentifier</h3>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Adresse email">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" placeholder="Mot de passe">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-sm-7 col-xs-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">rester connecté</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 col-xs-12 forgot-phone text-right">
+                                        <a href="auth-reset-password.html" class="text-right f-w-600 text-inverse"> Mot de passe Oublié ?</a>
+                                    </div>
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        
+                                        <p class="text-inverse text-left">Copyright &copy; 2021. I.S.E.T Rades</p>
+                                        <p class="text-inverse text-left m-b-0" ><b><a style='color:lightseagreen' [routerLink]="['/inscrire']">Pas de Compte? S'incrire</a></b></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img class='smallimg'src="assets/images/iset.png" alt="small-logo.png">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        
                     </div>
-                    <div class="row px-3 mb-4">
-                        <div class="line"></div> <small class="or text-center">Ou</small>
-                        <div class="line"></div>
-                    </div>
-                    <div class="row px-3"> <label class="mb-1">
-                            <h6 class="mb-0 text-sm">Email</h6>
-                        </label> <input class="mb-4" type="text" name="email" placeholder="Adresse mail"> </div>
-                    <div class="row px-3"> <label class="mb-1">
-                            <h6 class="mb-0 text-sm">Mot de passe</h6>
-                        </label> <input type="password" name="password" placeholder=" Mot de passe"> </div>
-                    <div class="row px-3 mb-4">
-              <a href="#" class="ml-auto mb-0 text-sm">Mot de passe Oublié?</a>
-                    </div>
-                    <div class="center mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Se Connecter</button> </div>
                    
                 </div>
+               
             </div>
+         
         </div>
-        <div class="bg-blue py-4">
-            <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2021. I.S.E.T Rades.</small>
-                <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/bootstrap/js/popper.js"></script>
-<script src="assets/vendorlog/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/daterangepicker/moment.min.js"></script>
-<script src="assets/vendorlog/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="assets/vendorlog/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="assets/jslog/main.js"></script>
+       
+    </section>
+    
+    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="assets/js/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="assets/js/modernizr/css-scrollbars.js"></script>
+    <script type="text/javascript" src="assets/js/common-pages.js"></script>
+</body>
+
+</html>

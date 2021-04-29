@@ -47,8 +47,8 @@ app.put(`${versionApi}/message/:id`, (req, res) => {
         })
     }
 })
-//add etudiant
-app.post(`${versionApi}/etudiant/Add`, (req, res) => {
+//add user
+app.post(`${versionApi}/user/Add`, (req, res) => {
     if(req.body === undefined || req.body.message === ''){
         res.json("Error, pas de données")
     }else{
@@ -62,8 +62,8 @@ app.post(`${versionApi}/etudiant/Add`, (req, res) => {
         })
     }
 })
-//modify etudiant
-app.put(`${versionApi}/etudiant/Modify`, (req, res) => {
+//modify user
+app.put(`${versionApi}/user/Modify`, (req, res) => {
     if(req.body === undefined || req.body.message === ''){
         res.json("Error, pas de données")
     }else{
