@@ -25,7 +25,7 @@
                             <div class="text-center">
                                 <img src="assets/images/iset.png" alt="logo.png">
                             </div>
-                            <div *ngIf='secondphase && thirdphase'  [style.opacity]="firstphase ? '0' : '1'" [style.visibility]="firstphase ? 'hidden' : 'visible'" class="auth-box animphases">
+                            <div *ngIf='secondphase '  [style.opacity]="firstphase ? '0' : '1'" [style.visibility]="firstphase ? 'hidden' : 'visible'" class="auth-box animphases">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
                                         <h3 class="text-left txt-primary">Inscription</h3>
@@ -67,7 +67,7 @@
                                 </div>
 
                             </div>
-                            <div *ngIf='firstphase && thirdphase' [style.opacity]="secondphase ? '0' : '1'" [style.visibility]="secondphase ? 'hidden' : 'visible'"  class="auth-box animphases">
+                            <div *ngIf='firstphase ' [style.opacity]="secondphase ? '0' : '1'" [style.visibility]="secondphase ? 'hidden' : 'visible'"  class="auth-box animphases">
                               <div class="row m-b-20">
                                   <div class="col-md-12">
                                       <h3 class="text-left txt-primary">Informations personnelles</h3>
@@ -104,29 +104,6 @@
                                 <span class="md-line"></span>
                             </div>
                            
-                             
-                              <div class="row m-t-30">
-                                  <div class="col-md-6">
-                                      <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='SecondtoFirst()'>Précédent</button>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='SecondtoThird()'>Suivant</button>
-                                  </div>
-                              </div>
-                              <hr/>
-                              <div class="row">
-                                  <div class="col-md-10">
-                                      
-                                      <p class="text-inverse text-left">Copyright &copy; 2021. I.S.E.T Rades</p>
-                                    
-                                  </div>
-                                  <div class="col-md-2">
-                                      <img class='smallimg'src="assets/images/iset.png" alt="small-logo.png">
-                                  </div>
-                              </div>
-
-                          </div>
-                          <div *ngIf='firstphase && secondphase' [style.opacity]="thirdphase ? '0' : '1'" [style.visibility]="thirdphase ? 'hidden' : 'visible'"  class="auth-box animphases">
                             <div class="row m-b-20">
                                 <div class="col-md-12">
                                     <h3 class="text-left txt-primary">Adresse</h3>
@@ -155,28 +132,28 @@
                         </div>
                            
                          
-                           
-                            <div class="row m-t-30">
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='ThirdtoSecond()'>Précédent</button>
-                                </div>
-                                <div class="col-md-6">
-                                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='Register()'>S'incrire</button>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-md-10">
+                              <div class="row m-t-30">
+                                  <div class="col-md-6">
+                                      <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='SecondtoFirst()'>Précédent</button>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)='Register()'>S'incrire</button>
+                                  </div>
+                              </div>
+                              <hr/>
+                              <div class="row">
+                                  <div class="col-md-10">
+                                      
+                                      <p class="text-inverse text-left">Copyright &copy; 2021. I.S.E.T Rades</p>
                                     
-                                    <p class="text-inverse text-left">Copyright &copy; 2021. I.S.E.T Rades</p>
-                                  
-                                </div>
-                                <div class="col-md-2">
-                                    <img class='smallimg'src="assets/images/iset.png" alt="small-logo.png">
-                                </div>
-                            </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <img class='smallimg'src="assets/images/iset.png" alt="small-logo.png">
+                                  </div>
+                              </div>
 
-                        </div>
+                          </div>
+                        
                         </div>
                         
                     </div>

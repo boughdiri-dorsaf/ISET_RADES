@@ -81,7 +81,8 @@ U:User={
       this.secondphase=true;
     
   }
-  SecondtoThird(){
+ 
+   Register(){
     if(this.U.nom==''){
       this.msg='Veuillez entrer Votre Nom';
       this.errormsg=false;
@@ -107,17 +108,6 @@ U:User={
       return;
     }
    
-    
-    this.secondphase=true;
-  
-    this.thirdphase=false;
-
-  }
-  ThirdtoSecond(){
-    this.secondphase=false;
-    this.thirdphase=true;
-  }
-   Register(){
     if(this.U.rue==''){
       this.msg='Veuillez Introduire Votre Rue ';
       this.errormsg=false;
