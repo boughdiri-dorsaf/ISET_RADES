@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page/home-page.component";
 import { AuthComponent } from "./pages/auth/auth.component";
 import { DashboardDefaultComponent } from "./pages/dashboard/dashboard-default/dashboard-default.component";
+import { HomeComponent } from "./pages/home/home.component";
 import { SignupComponent } from "./pages/signup/signup.component";
 import { SimplePageComponent } from "./pages/simple-page/simple-page.component";
 import { ProfileComponent } from "./pages/user/profile/profile.component";
@@ -10,16 +11,12 @@ import { ProfileComponent } from "./pages/user/profile/profile.component";
 const routes: Routes = [
   {
     path: "",
-    component: HomePageComponent,
-    children: [
-      {
-        path: "",
-        component: DashboardDefaultComponent,
-      },
-    ],
+    component: HomeComponent,
+    
   },
-  { path: "auth", component: AuthComponent },
+  { path: "auth", component: AuthComponent},
   { path: "signup", component: SignupComponent },
+
   {
     path: "dashboard",
     component: HomePageComponent,
