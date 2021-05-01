@@ -15,7 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
+
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
