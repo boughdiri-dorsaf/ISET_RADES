@@ -1,1 +1,46 @@
-<p>dashboard works!</p>
+<div class="row">
+    <div class="col-md-12 col-xl-12">
+      <app-card [title]="'Liste des Masters'" [cardClass]="'project-task'" [blockClass]="'p-b-10'">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Master</th>
+              <th>Date Finale</th>
+              <th>Etablissement</th>
+              <th>Etat</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of lstmasters | paginate: { itemsPerPage: 4, currentPage: p }">
+              <td>
+                <div class="task-contain">
+                  <h6 class="bg-c-blue d-inline-block text-center">MP</h6>
+                  <p class="d-inline-block m-l-20">{{item.nom}}</p>
+                </div>
+              </td>
+              <td>
+                <p class="d-inline-block m-r-20">{{item.date_fin}}</p>
+              </td>
+              <td>
+                <p class="d-inline-block m-r-20">{{item.etablissement}}</p>
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+            </tr>
+           
+            </tbody>
+          </table>
+          <pagination-controls style='display: table;
+          margin-right: auto;
+          margin-left: auto;' previousLabel="Précédent" nextLabel="Suivant" ></pagination-controls>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  

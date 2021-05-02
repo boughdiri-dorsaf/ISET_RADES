@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { SharedModule} from './shared/shared.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DashboardDefaultComponent } from './pages/dashboard/dashboard-default/dashboard-default.component';
 import { SimplePageComponent } from './pages/simple-page/simple-page.component';
@@ -16,7 +17,9 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { UserComponent } from './layout/user/user.component';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +32,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AuthComponent,
     SignupComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserComponent,
+    ResetpasswordComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,NgbModule,NgxPaginationModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,

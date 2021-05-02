@@ -1,3 +1,5 @@
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./home-page/home-page.component";
@@ -16,14 +18,14 @@ const routes: Routes = [
   },
   { path: "auth", component: AuthComponent},
   { path: "signup", component: SignupComponent },
-
+  { path: "resetpassword/:token", component: ResetpasswordComponent },
   {
     path: "dashboard",
     component: HomePageComponent,
     children: [
       {
         path: "",
-        component: DashboardDefaultComponent,
+        component: DashboardComponent,
       },
       {
         path: "profil",
