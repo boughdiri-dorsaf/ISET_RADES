@@ -4,7 +4,7 @@ import  swal  from 'sweetalert';
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-//@ts-nocheck
+
 interface Alert {
   type: string;
   message: string;
@@ -76,14 +76,14 @@ alerts=[];
 resetpassword(){
   swal(
     "Veuillez Introduire votre Adresse Email", {
-      //@ts-ignore
+     
     content: "input",
     title:'Renitialisation Mot de passe'
   }
   )
   .then((value) => {
    if(!this.US.emailverif(value)){
-    swal("Error", "Email Invalide","error").then(()=>{
+    swal("Erreur", "Email Invalide","error").then(()=>{
       this.resetpassword();
     });
     return
