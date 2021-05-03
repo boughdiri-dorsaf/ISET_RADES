@@ -1,3 +1,7 @@
+import { MasterService } from './../../services/master.service';
+import  swal  from 'sweetalert';
+import { departement, DepartementService } from './../../services/departement.service';
+import { EtablissementService, establishment } from './../../services/etablissement.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import '../../../assets/charts/amchart/amcharts.js';
@@ -7,6 +11,8 @@ import '../../../assets/charts/amchart/serial.js';
 import '../../../assets/charts/amchart/light.js';
 import '../../../assets/charts/amchart/ammap.js';
 import '../../../assets/charts/amchart/worldLow.js';
+import { master } from 'src/app/services/master.service';
+import { Subscription } from 'rxjs';
 
 declare const AmCharts: any;
 declare const $: any;
@@ -22,300 +28,93 @@ export class DashboardAdminComponent implements OnInit {
   totalValueGraphOption = buildChartOption();
   lstmasters=[];
   p
-  constructor(private US:UserService) { }
+  constructor(private US:UserService,private ES:EtablissementService,private DS:DepartementService,private MS:MasterService) { }
 tabmasters=false;
 formmasters=true;
+lstdepartement:departement[]=[];
+sub:Subscription;
+lstetablissement:establishment[]=[];
+M:master={nom:'',id_departement:null,
+seuil_admis_attente:0,seuil_admission:0,
+id_etablissement:null,date_fin_master:''}
   ngOnInit() { 
+this.ES.getetablissements().subscribe(val=>{
+   //@ts-ignore
+   for (let i = 0; i < val.data.length; i++) {
+    //@ts-ignore
+    this.lstetablissement.push(val.data[i].row);
+
+     
+   }
+});
+this.DS.getDepartements().subscribe(val=>{
+   //@ts-ignore
+   for (let i = 0; i < val.data.length; i++) {
+    //@ts-ignore
+    this.lstdepartement.push(val.data[i].row);
+     
+   }
+});
+this.sub=this.MS.getmasters().subscribe(val=>{
+ //@ts-ignore
+ for (let i = 0; i < val.data.length; i++) {
+  //@ts-ignore
+  this.lstmasters.push(val.data[i].row);
+   
+ }
+ console.log(this.lstmasters);
+});
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
       this.user=val.data[0];
     })
-    this.lstmasters=[
-      {nom:'Master Professionnel Developpement des applications mobiles',date_fin:'2021/05/23',etablissement:'Iset Rades',Seuil_Admission:25},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50}
-    ];
-    AmCharts.makeChart('statistics-chart', {
-      type: 'serial',
-      marginTop: 0,
-
-      marginRight: 0,
-      dataProvider: [{
-        year: 'Jan',
-        value: 0.98
-      }, {
-        year: 'Feb',
-        value: 1.87
-      }, {
-        year: 'Mar',
-        value: 0.97
-      }, {
-        year: 'Apr',
-        value: 1.64
-      }, {
-        year: 'May',
-        value: 0.4
-      }, {
-        year: 'Jun',
-        value: 2.9
-      }, {
-        year: 'Jul',
-        value: 5.2
-      }, {
-        year: 'Aug',
-        value: 0.77
-      }, {
-        year: 'Sap',
-        value: 3.1
-      }],
-      valueAxes: [{
-        axisAlpha: 0,
-        dashLength: 6,
-        gridAlpha: 0.1,
-        position: 'left'
-      }],
-      graphs: [{
-        id: 'g1',
-        bullet: 'round',
-        bulletSize: 9,
-        lineColor: '#4680ff',
-        lineThickness: 2,
-        negativeLineColor: '#4680ff',
-        type: 'smoothedLine',
-        valueField: 'value'
-      }],
-      chartCursor: {
-        cursorAlpha: 0,
-        valueLineEnabled: false,
-        valueLineBalloonEnabled: true,
-        valueLineAlpha: false,
-        color: '#fff',
-        cursorColor: '#FC6180',
-        fullWidth: true
-      },
-      categoryField: 'year',
-      categoryAxis: {
-        gridAlpha: 0,
-        axisAlpha: 0,
-        fillAlpha: 1,
-        fillColor: '#FAFAFA',
-        minorGridAlpha: 0,
-        minorGridEnabled: true
-      },
-      'export': {
-        enabled: true
-      }
-    });
-    AmCharts.makeChart('solid-gauge1', {
-      type: 'gauge',
-
-      theme: 'light',
-      axes: [{
-        axisAlpha: 0,
-        tickAlpha: 0,
-        labelsEnabled: false,
-        startValue: 0,
-        endValue: 100,
-        startAngle: 0,
-        endAngle: 360,
-        bands: [{
-          color: '#E5E5E5',
-          startValue: -35,
-          endValue: 35,
-          radius: '100%',
-          innerRadius: '92%'
-        }, {
-          color: '#93BE52',
-          startValue: -35,
-          endValue: 20,
-          radius: '100%',
-          innerRadius: '92%'
-        }]
-      }],
-      'export': {
-        enabled: true
-      }
-    });
-    AmCharts.makeChart('email-sent', {
-      type: 'serial',
-      theme: 'light',
-
-      dataDateFormat: 'YYYY-MM-DD',
-      precision: 2,
-      valueAxes: [
-        {
-          id: 'v1',
-          title: 'Sales',
-          position: 'left',
-          autoGridCount: false,
-          labelFunction: function (g) {
-            return Math.round(g);
-          }
-        },
-        {
-          id: 'v2',
-          title: '',
-          gridAlpha: 0,
-          fontSize: 0,
-          axesAlpha: 0,
-          position: 'left',
-          autoGridCount: false
-        }
-      ],
-      graphs:
-        [
-          {
-            id: 'g3',
-            valueAxis: 'v1',
-            lineColor: '#4680ff',
-            fillColors: '#4680ff',
-            fillAlphas: 1,
-            type: 'column',
-            title: 'Actual Sales',
-            valueField: 'sales2',
-            clustered: true,
-            columnWidth: 0.4,
-            legendValueText: '$[[value]]M',
-            balloonText: '[[title]]<br /><b style="font-size: 130%">$[[value]]M</b>'
-          },
-          {
-            id: 'g4',
-            valueAxis: 'v1',
-            lineColor: '#FC6180',
-            fillColors: '#FC6180',
-            fillAlphas: 1,
-            type: 'column',
-            title: 'Target Sales',
-            valueField: 'sales1',
-            clustered: true,
-            columnWidth: 0.4,
-            legendValueText: '$[[value]]M',
-            balloonText: '[[title]]<br /><b style="font-size: 130%">$[[value]]M</b>'
-          },
-          {
-            id: 'g1',
-            valueAxis: 'v2',
-            bullet: 'round',
-            bulletBorderAlpha: 0,
-            bulletColor: 'transparent',
-            bulletSize: 0,
-            hideBulletsCount: 50,
-            lineThickness: 3,
-            dashLength: 10,
-            lineColor: '#93BE52',
-            type: 'smoothedLine',
-            title: 'Market Days',
-            useLineColorForBulletBorder: true,
-            valueField: 'market1',
-            balloonText: '[[title]]<br /><b style="font-size: 130% ">[[value]]</b>'
-          },
-          {
-            id: 'v3',
-            valueAxis: 'v1',
-            lineColor: '#FFB64D',
-            fillColors: '#FFB64D',
-            fillAlphas: 1,
-            type: 'column',
-            title: 'Actual Sales',
-            valueField: 'sales2',
-            clustered: true,
-            columnWidth: 0.4,
-            legendValueText: '$[[value]]M',
-            balloonText: '[[title]]<br /><b style="font-size: 130%>$[[value]]M</b>'
-          }
-        ],
-      chartCursor: {
-        pan: true,
-        valueLineEnabled: true,
-        valueLineBalloonEnabled: true,
-        cursorAlpha: 0,
-        valueLineAlpha: 0.2
-      },
-      categoryField: 'date',
-      categoryAxis: {
-        parseDates: true,
-        dashLength: 0,
-        axisAlpha: 0,
-        GridAlpha: 0,
-        minorGridEnabled: true
-      },
-      legend: {
-        useGraphSettings: true,
-        position: 'top'
-      },
-      balloon: {
-        borderThickness: 1,
-        shadowAlpha: 0
-      },
-      'export': {
-        enabled: true
-      },
-      dataProvider: [
-        {
-          date: '2013-01-16',
-          market1: 91,
-          market2: 75,
-          sales1: 5,
-          sales2: 8
-        },
-        {
-          date: '2013-01-17',
-          market1: 74,
-          market2: 78,
-          sales1: 4,
-          sales2: 6
-        },
-        {
-          date: '2013-01-18',
-          market1: 78,
-          market2: 88,
-          sales1: 5,
-          sales2: 2
-        },
-        {
-          date: '2013-01-19',
-          market1: 85,
-          market2: 89,
-          sales1: 8,
-          sales2: 9
-        },
-        {
-          date: '2013-01-20',
-          market1: 82,
-          market2: 89,
-          sales1: 9,
-          sales2: 6
-        },
-        {
-          date: '2013-01-21',
-          market1: 83,
-          market2: 85,
-          sales1: 3,
-          sales2: 5
-        },
-        {
-          date: '2013-01-22',
-          market1: 78,
-          market2: 92,
-          sales1: 5,
-          sales2: 7
-        }
-      ]
-    });
+    
+  
   }
 
-  onTaskStatusChange(event) {
-    const parentNode = (event.target.parentNode.parentNode);
-    parentNode.classList.toggle('done-task');
-  }
+ refreshmasters(){
+  this.lstmasters=new Array();
+   this.sub.unsubscribe();
+   this.sub=this.MS.getmasters().subscribe(val=>{
+    //@ts-ignore
+    for (let i = 0; i < val.data.length; i++) {
+     //@ts-ignore
+     this.lstmasters.push(val.data[i].row);
+      
+    }
+    console.log(this.lstmasters);
+   });
+ }
   Addmaster(){
+    if(this.M.nom==''){
+      swal('Erreur',"Veuillez introduire le Nom du Master",'error');
+       }
+       else if(this.M.date_fin_master==''){
+        swal('Erreur',"Veuillez introduire la Date du Master",'error');
+       }
+       else if(this.M.id_etablissement==null){
+        swal('Erreur',"Veuillez choisir l'Etablissement du Master",'error');
+       }
+       else if(this.M.id_departement==null){
+        swal('Erreur',"Veuillez choisir le Departement du Master",'error');
+       }
+       else if(this.M.seuil_admission==0){
+        swal('Erreur',"Le Seuil admission doit etre supérieure de 0",'error');
+       }
+       else{
+        swal('Master','Master Ajouté avec succée','success');
+        this.tabmasters=false;
+        this.formmasters=true
+        console.log(this.M);
+        this.MS.ajoutermaster(this.M).subscribe(val=>{
+          console.log(val);
+          this.M={nom:'',id_departement:null,
+          seuil_admis_attente:0,seuil_admission:0,
+          id_etablissement:null,date_fin_master:''}
+          this.refreshmasters()
+         });
+       }
   
   }
 }

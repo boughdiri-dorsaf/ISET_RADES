@@ -1,3 +1,5 @@
+import  swal  from 'sweetalert';
+import { departement, DepartementService } from './../../services/departement.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,25 +11,52 @@ import { Component, OnInit } from '@angular/core';
 export class DepartmentComponent implements OnInit {
   tabdepartment=false;
   formdepartment=true;
-  constructor(private US:UserService) { }
-  lstdepartment=[];
+  constructor(private US:UserService,private DS:DepartementService) { }
+  lstdepartment:departement[]=[];
+  D:departement={code:'',description:'',libelle:''};
   ngOnInit() {
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
       this.user=val.data[0];
     })
-    this.lstdepartment=[
-      {nom:'Master Professionnel Developpement des applications mobiles',date_fin:'2021/05/23',etablissement:'Iset Rades',Seuil_Admission:25},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50}
-    ];
+    this.DS.getDepartements().subscribe(val=>{
+      //@ts-ignore
+console.log(val.data);
+   var lst=[]
+   //@ts-ignore
+   for (let i = 0; i < val.data.length; i++) {
+    //@ts-ignore
+     lst.push(val.data[i].row);
+     
+   }
+   this.lstdepartment=lst;
+    })
+   
+  }
+  alerts=[]
+  AjouterDepartement(){
+    if(this.D.code==''){
+      swal('Erreur','Veuillez introduire le code du departement','error');
+      
+       }
+       else if(this.D.description==''){
+        swal('Erreur','Veuillez introduire le description du departement','error');
+       }
+       else if(this.D.libelle==''){
+        swal('Erreur','Veuillez introduire le libelle du departement','error');
+       }
+       else{
+        swal('Departement','Departement Ajouté avec succée','success');
+        this.tabdepartment=false;
+        this.formdepartment=true
+        this.DS.ajouterDepartement(this.D).subscribe(val=>{
+          this.D={code:'',description:'',libelle:''};
+         });
+       }
+
+    
+   
   }
 
 }

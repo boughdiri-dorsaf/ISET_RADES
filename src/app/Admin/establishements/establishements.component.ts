@@ -1,3 +1,6 @@
+import  swal  from 'sweetalert';
+import { EtablissementService,establishment } from './../../services/etablissement.service';
+
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,25 +12,54 @@ import { Component, OnInit } from '@angular/core';
 export class EstablishementsComponent implements OnInit {
   tabestablishement=false;
   formestablishment=true;
-  constructor(private US:UserService) { }
-  lstestablishment=[];
+  E:establishment={libelle:'',rue:'',pays:'',ville:'',gouvernorat_adresse:'',code_postale:''}
+  constructor(private US:UserService,private ES:EtablissementService) { }
+  lstestablishment:establishment[]=[];
   ngOnInit() {
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
       this.user=val.data[0];
     })
-    this.lstestablishment=[
-      {nom:'Master Professionnel Developpement des applications mobiles',date_fin:'2021/05/23',etablissement:'Iset Rades',Seuil_Admission:25},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50},
-      {nom:'Master Professionnel Business Intelligence',date_fin:'2021/08/23',etablissement:'Iset Rades',Seuil_Admission:50}
-    ];
+   
+    this.ES.getetablissements().subscribe(val=>{
+ console.log(val);
+ var lst=[]
+   //@ts-ignore
+   for (let i = 0; i < val.data.length; i++) {
+    //@ts-ignore
+     lst.push(val.data[i].row);
+     
+   }
+   this.lstestablishment=lst;
+    });
   }
+  AjouterEstablishement(){
+    if(this.E.libelle==''){
+      swal('Erreur',"Veuillez introduire le libelle du l'etablissement",'error');
+       }
+       else if(this.E.pays==''){
+        swal('Erreur',"Veuillez introduire le Pays du l'etablissement",'error');
+       }
+       else if(this.E.gouvernorat_adresse==''){
+        swal('Erreur',"Veuillez introduire le Gouvernorat du l'etablissement",'error');
+       }
+       else if(this.E.ville==''){
+        swal('Erreur',"Veuillez introduire le Ville du l'etablissement",'error');
+       }
+       else if(this.E.rue==''){
+        swal('Erreur',"Veuillez introduire la Rue du l'etablissement",'error');
+       }
+       else{
+        swal('Etablissement','Etablissement Ajouté avec succée','success');
+        this.tabestablishement=false;
+        this.formestablishment=true
+        this.ES.ajouteretablissement(this.E).subscribe(val=>{
+          this.E={libelle:'',rue:'',pays:'',ville:'',gouvernorat_adresse:'',code_postale:''}
+         });
+       }
 
+    
+   
+  }
 }

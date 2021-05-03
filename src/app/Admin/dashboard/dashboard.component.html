@@ -27,10 +27,10 @@
                 </div>
               </td>
               <td>
-                <p class="d-inline-block m-r-20">{{item.date_fin}}</p>
+                <p class="d-inline-block m-r-20">{{item.date_fin_master | date}}</p>
               </td>
               <td>
-                <p class="d-inline-block m-r-20">{{item.etablissement}}</p>
+                <p class="d-inline-block m-r-20">{{item.libelle}}</p>
               </td>
               <td>
 
@@ -53,7 +53,7 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nom Master</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer ">
+                        <input [(ngModel)]="M.nom" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer ">
                         <small id="emailHelp" class="form-text text-muted">Libellé de master</small>
                       </div>
                   </div>
@@ -63,7 +63,7 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Date fin :</label>
-                        <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer l date">
+                        <input [(ngModel)]="M.date_fin_master" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer l date">
                         <small id="emailHelp" class="form-text text-muted">Date de Cloture d'admission au master</small>
                       </div>
                   </div>
@@ -74,8 +74,8 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Etablissement</label>
-                        <select class="form-control">
-                          <option value='1'>Etablissement</option>
+                        <select [(ngModel)]="M.id_etablissement" class="form-control">
+                          <option *ngFor="let item of lstetablissement"  [value]='item.id_etablissement'>{{item.libelle}}</option>
                         </select>
                         <small id="emailHelp" class="form-text text-muted">Etablissement de master</small>
                       </div>
@@ -86,8 +86,8 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Département</label>
-                        <select class="form-control">
-                          <option value='1'>Département</option>
+                        <select [(ngModel)]="M.id_departement" class="form-control">
+                          <option *ngFor="let item of lstdepartement"  [value]='item.id_departement'>{{item.libelle}}</option>
                         </select>
                         <small id="emailHelp" class="form-text text-muted">Département de master</small>
                       </div>
@@ -99,7 +99,7 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Seuil D'admission</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" ">
+                        <input [(ngModel)]="M.seuil_admission" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" ">
 
                       </div>
                   </div>
@@ -109,7 +109,7 @@
                   <div class="col-sm">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Seuil D'admission en attente</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                        <input [(ngModel)]="M.seuil_admis_attente" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
                         
                       </div>
                   </div>
@@ -117,7 +117,7 @@
               </div>
               <div style='margin-top: 5%;margin-bottom: 3%;margin-left: 76%;' class='row'>
                 <button class='btn btn-danger' style='margin-bottom: 4%;margin-right: 3%;'(click)='tabmasters=false;formmasters=true'>Annuler</button>
-                <button class='btn btn-success' style='margin-bottom: 4%;'>Ajouter</button>
+                <button class='btn btn-success' style='margin-bottom: 4%;' (click)='Addmaster()'>Ajouter</button>
               </div>
         </app-card>
     </div>
