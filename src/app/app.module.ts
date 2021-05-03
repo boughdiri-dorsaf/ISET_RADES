@@ -1,3 +1,5 @@
+import { DashboardAdminComponent } from './Admin/dashboard/dashboard.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,9 +22,14 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UserComponent } from './layout/user/user.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
+import { HomepageAdComponent } from './Admin/homepage-ad/homepage-ad.component';
+import { AuthAdminComponent } from './Admin/auth-admin/auth-admin.component';
+import { EstablishementsComponent } from './Admin/establishements/establishements.component';
+import { DepartmentComponent } from './Admin/department/department.component';
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,AuthAdminComponent,DashboardAdminComponent,
     AdminComponent,
     DashboardDefaultComponent,
     SimplePageComponent,
@@ -34,7 +41,11 @@ import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.comp
     HomeComponent,
     DashboardComponent,
     UserComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    HomepageAdComponent,
+    AuthAdminComponent,
+    EstablishementsComponent,
+    DepartmentComponent,
   ],
   imports: [
     BrowserModule,NgbModule,NgxPaginationModule,

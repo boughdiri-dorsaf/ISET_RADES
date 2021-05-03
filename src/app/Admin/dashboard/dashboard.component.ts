@@ -1,35 +1,31 @@
-import { User, UserService } from './../../services/user.service';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import 'assets/charts/amchart/amcharts.js';
-import 'assets/charts/amchart/gauge.js';
-import 'assets/charts/amchart/pie.js';
-import 'assets/charts/amchart/serial.js';
-import 'assets/charts/amchart/light.js';
-import 'assets/charts/amchart/ammap.js';
-import 'assets/charts/amchart/worldLow.js';
+import '../../../assets/charts/amchart/amcharts.js';
+import '../../../assets/charts/amchart/gauge.js';
+import '../../../assets/charts/amchart/pie.js';
+import '../../../assets/charts/amchart/serial.js';
+import '../../../assets/charts/amchart/light.js';
+import '../../../assets/charts/amchart/ammap.js';
+import '../../../assets/charts/amchart/worldLow.js';
 
 declare const AmCharts: any;
 declare const $: any;
 
-@Component({
+@Component({ 
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  templateUrl: './dashboard.component.html', 
+  styleUrls: ['./dashboard.component.scss','../../../assets/icon/svg-animated/svg-weather.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardAdminComponent implements OnInit {
   totalValueGraphData1 = buildChartJS('#fff', [45, 25, 35, 20, 45, 20, 40, 10, 30, 45], '#3a73f1', 'transparent');
   totalValueGraphData2 = buildChartJS('#fff', [10, 25, 35, 20, 10, 20, 15, 45, 15, 10], '#e55571', 'transparent');
   totalValueGraphOption = buildChartOption();
-
+  lstmasters=[];
+  p
   constructor(private US:UserService) { }
-lstmasters=[];
-page = 1;
-user:User={email:'',nom:'',prenom:'',password:'',num_passport:'',age:0,cin:'',
-sexe:'',date_naissance:'',ville:'',gouvernourat:'',pays:'',rue:'',code_postale:'',id:0};
-pageSize =10;
-p1
-  ngOnInit() {
- 
+tabmasters=false;
+formmasters=true;
+  ngOnInit() { 
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
@@ -319,7 +315,9 @@ p1
     const parentNode = (event.target.parentNode.parentNode);
     parentNode.classList.toggle('done-task');
   }
-
+  Addmaster(){
+  
+  }
 }
 
 function getRandomData() {
@@ -432,4 +430,6 @@ function buildChartOption() {
       }
     }
   };
+
+
 }

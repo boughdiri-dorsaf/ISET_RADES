@@ -1,3 +1,6 @@
+import  swal  from 'sweetalert';
+import { User, UserService } from './../../services/user.service';
+import { Router } from '@angular/router';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 import {MenuItems} from '../../shared/menu-items/menu-items';
@@ -103,7 +106,7 @@ export class AdminComponent implements OnInit {
 
   public config: any;
 
-  constructor(public menuItems: MenuItems, private modalService: NgbModal) {
+  constructor(public menuItems: MenuItems, private modalService: NgbModal,private US:UserService,private route:Router) {
     this.navType = 'st5';
     this.themeLayout = 'vertical';
     this.vNavigationView = 'view1';
@@ -160,11 +163,32 @@ export class AdminComponent implements OnInit {
     // this.navType = 'st3';
 
   }
-
+  user:User={email:'',nom:'',prenom:'',password:'',num_passport:'',age:0,cin:'',
+  sexe:'',date_naissance:'',ville:'',gouvernourat:'',pays:'',rue:'',code_postale:'',id:0};
   ngOnInit() {
+    this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
+      console.log(val);
+      //@ts-ignore
+      this.user=val.data[0];
+    })
     this.setBackgroundPattern('pattern2');
   }
-
+  disconnect(){
+    swal({
+      title: "Deconnexion",
+      text: "Voulez vous Vraiment se Déconnecter ?",
+      icon: "warning",
+      buttons: ["Annuler", "Oui"],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        localStorage.clear();
+        this.route.navigateByUrl('auth');
+      }
+    }); 
+    
+  }
   onResize(event) {
     this.innerHeight = event.target.innerHeight + 'px';
     /* menu responsive */

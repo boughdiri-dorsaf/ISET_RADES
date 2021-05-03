@@ -1,3 +1,8 @@
+import { DepartmentComponent } from './Admin/department/department.component';
+import { EstablishementsComponent } from './Admin/establishements/establishements.component';
+import { AuthAdminComponent } from './Admin/auth-admin/auth-admin.component'; 
+import { DashboardAdminComponent } from './Admin/dashboard/dashboard.component';
+import { HomepageAdComponent } from './Admin/homepage-ad/homepage-ad.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgModule } from "@angular/core";
@@ -17,8 +22,15 @@ const routes: Routes = [
     
   },
   { path: "auth", component: AuthComponent},
+  { path: "authAdmin", component: AuthAdminComponent},
   { path: "signup", component: SignupComponent },
   { path: "resetpassword/:token", component: ResetpasswordComponent },
+  {path:'dashadmin',
+  component:HomepageAdComponent,children: [
+    {path:'',component:DashboardAdminComponent},
+    {path:'etablissment',component:EstablishementsComponent},
+    {path:'department',component:DepartmentComponent}
+  ]},
   {
     path: "dashboard",
     component: HomePageComponent,

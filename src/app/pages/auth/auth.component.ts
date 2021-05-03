@@ -76,8 +76,8 @@ alerts=[];
 resetpassword(){
   swal(
     "Veuillez Introduire votre Adresse Email", {
-     
-    content: "input",
+    
+    content: {element:"input"},
     title:'Renitialisation Mot de passe'
   }
   )
