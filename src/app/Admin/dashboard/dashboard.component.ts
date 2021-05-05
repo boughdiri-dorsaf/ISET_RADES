@@ -1,4 +1,4 @@
-import { MasterService } from './../../services/master.service';
+import { MasterService,master } from './../../services/master.service';
 import  swal  from 'sweetalert';
 import { departement, DepartementService } from './../../services/departement.service';
 import { EtablissementService, establishment } from './../../services/etablissement.service';
@@ -11,7 +11,6 @@ import '../../../assets/charts/amchart/serial.js';
 import '../../../assets/charts/amchart/light.js';
 import '../../../assets/charts/amchart/ammap.js';
 import '../../../assets/charts/amchart/worldLow.js';
-import { master } from 'src/app/services/master.service';
 import { Subscription } from 'rxjs';
 
 declare const AmCharts: any;
