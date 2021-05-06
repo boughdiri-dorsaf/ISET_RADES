@@ -19,7 +19,8 @@ export class SignupComponent implements OnInit {
     password:'',
     rue:"",
     ville:'',
-    gouvernourat:'',
+    
+    gouvernorat_adresse:'',
     id:0,
     num_passport:"",
     cin:"",
@@ -38,18 +39,6 @@ export class SignupComponent implements OnInit {
   FirsttoSecond(){
     if(this.U.email==''){
       this.msg='Veuillez entrer Votre adresse email';
-      this.errormsg=false;
-      setTimeout(()=>{this.errormsg=true},6000);
-      return;
-    }
-    if(this.email==''){
-      this.msg='Veuillez Confirmer Votre adresse email';
-      this.errormsg=false;
-      setTimeout(()=>{this.errormsg=true},6000);
-      return;
-    }
-    if(this.email!=this.U.email){
-      this.msg='Adresse email Erroné';
       this.errormsg=false;
       setTimeout(()=>{this.errormsg=true},6000);
       return;
@@ -126,7 +115,7 @@ export class SignupComponent implements OnInit {
       setTimeout(()=>{this.errormsg=true},6000);
       return;
     }
-    if(this.U.gouvernourat==''){
+    if(this.U.gouvernorat_adresse==''){
       this.msg='Veuillez entrer le Gouvernorat';
       this.errormsg=false;
       setTimeout(()=>{this.errormsg=true},6000);

@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 lstmasters=[];
 page = 1;
 user:User={email:'',nom:'',prenom:'',password:'',num_passport:'',age:0,cin:'',
-sexe:'',date_naissance:'',ville:'',gouvernourat:'',pays:'',rue:'',code_postale:'',id:0};
+sexe:'',date_naissance:'',ville:'',gouvernorat_adresse:'',pays:'',rue:'',code_postale:'',id:0};
 pageSize =10;
 p1
   ngOnInit() {
@@ -33,7 +33,7 @@ p1
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
-      this.user=val.data[0];
+     // this.user=val.data[0];
     })
     this.lstmasters=[
       {nom:'Master Professionnel Developpement des applications mobiles',date_fin:'2021/05/23',etablissement:'Iset Rades',Seuil_Admission:25},

@@ -106,7 +106,7 @@ export class UserComponent implements OnInit {
 
   public config: any;
   user:User={email:'',nom:'',prenom:'',password:'',num_passport:'',age:0,cin:'',
-  sexe:'',date_naissance:'',ville:'',gouvernourat:'',pays:'',rue:'',code_postale:'',id:0};
+  sexe:'',date_naissance:'',ville:'',gouvernorat_adresse:'',pays:'',rue:'',code_postale:'',id:0};
   constructor(public menuItems: MenuItems, private modalService: NgbModal,private US:UserService,private route:Router) {
     this.navType = 'st5';
     this.themeLayout = 'vertical';
@@ -166,10 +166,11 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem('id'));
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
       //@ts-ignore
-      this.user=val.data[0];
+     this.user=val.data[0];
     })
     this.setBackgroundPattern('pattern2');
   }

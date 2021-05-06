@@ -14,7 +14,7 @@ code_postale:string ;
 rue:string;
 ville:string;
 id:number;
-gouvernourat:string;
+gouvernorat_adresse:string;
 pays:string;
 }
 

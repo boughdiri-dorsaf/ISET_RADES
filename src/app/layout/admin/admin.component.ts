@@ -164,7 +164,8 @@ export class AdminComponent implements OnInit {
 
   }
   user:User={email:'',nom:'',prenom:'',password:'',num_passport:'',age:0,cin:'',
-  sexe:'',date_naissance:'',ville:'',gouvernourat:'',pays:'',rue:'',code_postale:'',id:0};
+  sexe:'',date_naissance:'',ville:'',
+  gouvernorat_adresse:'',pays:'',rue:'',code_postale:'',id:0};
   ngOnInit() {
     this.US.getUser(Number(localStorage.getItem('id'))).subscribe(val=>{
       console.log(val);
